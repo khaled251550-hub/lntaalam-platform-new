@@ -9,15 +9,22 @@ workflows:
     scripts:
       - name: Clean and install dependencies
         script: |
-          npm cache clean --force
+          set -e
+          echo "=== Node version ==="
+          node -v
+          echo "=== NPM version ==="
+          npm -v
+          echo "=== Cleaning directories ==="
           rm -rf node_modules package-lock.json
-          npm install --legacy-peer-deps --no-audit --no-fund
+          echo "=== Running npm install ==="
+          npm install --legacy-peer-deps || { echo "NPM install failed"; exit 1; }
       - name: Build web assets
         script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
 
