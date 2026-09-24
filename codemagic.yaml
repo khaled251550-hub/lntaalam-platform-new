@@ -7,20 +7,18 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Navigate and Install dependencies
+      - name: Install pnpm and dependencies
         script: |
-          cd clone
-          npm install --force
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          pnpm install --no-frozen-lockfile
       - name: Build web assets
-        script: |
-          cd clone
-          npm run app:build
+        script: pnpm run app:build
       - name: Sync Capacitor iOS
-        script: |
-          cd clone
-          npx cap sync ios
+        script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
