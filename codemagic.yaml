@@ -9,17 +9,20 @@ workflows:
     scripts:
       - name: Install Dependencies
         script: |
+          cd /Users/builder/clone
           corepack enable
-          corepack prepare pnpm@latest --activate
-          pnpm install
+          yarn install
       - name: Build web assets
         script: |
-          pnpm run app:build
+          cd /Users/builder/clone
+          yarn run app:build
       - name: Sync Capacitor iOS
         script: |
+          cd /Users/builder/clone
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
