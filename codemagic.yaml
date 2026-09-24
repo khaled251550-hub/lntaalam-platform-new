@@ -5,14 +5,15 @@ workflows:
     environment:
       node: latest
       vars:
-        YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
+        YARN_IGNORE_WORKSPACE_ROOT_CHECK: "true"
       groups:
         - apple_credentials
     scripts:
       - name: Install Dependencies
         script: |
           corepack enable
-          yarn install
+          # استخدام خيار لتجاوز فحص المجلد الرئيسي تماماً
+          yarn install --inline-builds
       - name: Build web assets
         script: |
           yarn run app:build
@@ -21,6 +22,7 @@ workflows:
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
