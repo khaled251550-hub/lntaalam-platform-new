@@ -9,14 +9,21 @@ workflows:
     scripts:
       - name: Install Dependencies
         script: |
+          # التأكد من الدخول إلى مجلد المشروع الصحيح أينما وجد
+          cd clone || cd .
           corepack enable
           yarn install
       - name: Build web assets
-        script: yarn run app:build
+        script: |
+          cd clone || cd .
+          yarn run app:build
       - name: Sync Capacitor iOS
-        script: npx cap sync ios
+        script: |
+          cd clone || cd .
+          npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
