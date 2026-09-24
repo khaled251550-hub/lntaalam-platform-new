@@ -7,14 +7,17 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Install dependencies with Yarn
-        script: yarn install --immutable --immutable-cache --check-cache || yarn install
+      - name: Force install with npm
+        script: |
+          rm -rf node_modules yarn.lock package-lock.json pnpm-lock.yaml .yarn
+          npm install --legacy-peer-deps --force
       - name: Build web assets
-        script: yarn run app:build
+        script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
 
