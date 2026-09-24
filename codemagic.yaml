@@ -4,33 +4,25 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: latest
+      YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
       groups:
         - apple_credentials
     scripts:
       - name: Install Dependencies
         script: |
-          echo "Current directory is:" && pwd
-          echo "Files in current directory:" && ls -la
-          # إذا كان المشروع داخل مجلد فرعي، سنبحث عنه وننتقل اليه تلقائياً
-          PROJECT_DIR=$(find . -name "package.json" -maxdepth 2 -exec dirname {} \;)
-          if [ -n "$PROJECT_DIR" ]; then
-            cd "$PROJECT_DIR"
-            echo "Moved to project directory: $PWD"
-          fi
+          # إعداد بيئة Yarn وتجاوز فحص الـ workspaces المتداخلة
           corepack enable
+          yarn config set enableGlobalCache false
           yarn install
       - name: Build web assets
         script: |
-          PROJECT_DIR=$(find . -name "package.json" -maxdepth 2 -exec dirname {} \;)
-          if [ -n "$PROJECT_DIR" ]; then cd "$PROJECT_DIR"; fi
           yarn run app:build
       - name: Sync Capacitor iOS
         script: |
-          PROJECT_DIR=$(find . -name "package.json" -maxdepth 2 -exec dirname {} \;)
-          if [ -n "$PROJECT_DIR" ]; then cd "$PROJECT_DIR"; fi
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
