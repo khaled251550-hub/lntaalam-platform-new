@@ -2,23 +2,36 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
-    working_directory: clone
+    working_directory: .
     environment:
       node: latest
       groups:
         - apple_credentials
     scripts:
-      - name: Install dependencies safely
+      - name: Verify workspace and install
         script: |
-          pwd
-          cd /Users/builder/clone
+          echo "Current directory is: $(pwd)"
+          ls -la
+          if [ -d "clone" ]; then
+            cd clone
+          fi
+          echo "Working inside: $(pwd)"
           npm install --legacy-peer-deps --force
       - name: Build web assets
-        script: npm run app:build
+        script: |
+          if [ -d "clone" ]; then
+            cd clone
+          fi
+          npm run app:build
       - name: Sync Capacitor iOS
-        script: npx cap sync ios
+        script: |
+          if [ -d "clone" ]; then
+            cd clone
+          fi
+          npx cap sync ios
     artifacts:
-      - ios/App/App/build/**/*.ipa
+      - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
