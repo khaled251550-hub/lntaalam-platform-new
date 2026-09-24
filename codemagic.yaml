@@ -7,16 +7,17 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Clean conflicting lockfiles and install
+      - name: Clean and install with npm
         script: |
-          rm -f package-lock.lock pnpm-lock.yaml
-          yarn install
+          rm -rf node_modules yarn.lock package-lock.json pnpm-lock.yaml
+          npm install --legacy-peer-deps
       - name: Build web assets
-        script: yarn run app:build
+        script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
 
