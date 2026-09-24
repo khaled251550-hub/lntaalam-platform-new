@@ -2,6 +2,7 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
+    working_directory: clone
     environment:
       groups:
         - apple_credentials
@@ -14,6 +15,7 @@ workflows:
         script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
 
