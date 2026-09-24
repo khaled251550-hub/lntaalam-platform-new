@@ -6,12 +6,16 @@ workflows:
       groups:
         - apple_credentials
     scripts:
+      - name: Install pnpm
+        script: npm install -g pnpm
       - name: Install dependencies
-        script: pnpm install
+        script: pnpm install --frozen-lockfile=false
       - name: Build web assets
         script: pnpm run app:build
       - name: Sync Capacitor iOS
         script: pnpm run mobile:sync
     artifacts:
       - ios/App/App/build/**/*.ipa
+
+
 
