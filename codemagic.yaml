@@ -2,21 +2,26 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
-    working_directory: clone
     environment:
       node: latest
       groups:
         - apple_credentials
     scripts:
-      - name: Install dependencies
+      - name: Navigate and Install dependencies
         script: |
+          cd clone
           npm install --force
       - name: Build web assets
-        script: npm run app:build
+        script: |
+          cd clone
+          npm run app:build
       - name: Sync Capacitor iOS
-        script: npx cap sync ios
+        script: |
+          cd clone
+          npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
