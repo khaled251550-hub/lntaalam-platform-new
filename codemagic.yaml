@@ -9,15 +9,18 @@ workflows:
     scripts:
       - name: Install Dependencies
         script: |
-          npm install
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          pnpm install
       - name: Build web assets
         script: |
-          npm run app:build
+          pnpm run app:build
       - name: Sync Capacitor iOS
         script: |
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
