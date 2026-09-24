@@ -6,6 +6,8 @@ workflows:
       groups:
         - apple_credentials
     scripts:
+      - name: Enable yarn via corepack
+        script: corepack enable && corepack prepare yarn@stable --activate
       - name: Install dependencies
         script: yarn install --frozen-lockfile=false
       - name: Build web assets
@@ -14,4 +16,5 @@ workflows:
         script: yarn run mobile:sync
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
