@@ -6,13 +6,12 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Enable pnpm via corepack
-        script: corepack enable && corepack prepare pnpm@latest --activate
       - name: Install dependencies
-        script: pnpm install --frozen-lockfile=false
+        script: yarn install --frozen-lockfile=false
       - name: Build web assets
-        script: pnpm run app:build
+        script: yarn run app:build
       - name: Sync Capacitor iOS
-        script: pnpm run mobile:sync
+        script: yarn run mobile:sync
     artifacts:
       - ios/App/App/build/**/*.ipa
+
