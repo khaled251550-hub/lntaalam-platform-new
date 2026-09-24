@@ -8,18 +8,17 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Enable Corepack & Install with Yarn
+      - name: Install dependencies bypassing strict checks
         script: |
-          echo "Current directory is: $(pwd)"
-          ls -la
-          corepack enable
-          yarn install --frozen-lockfile || yarn install
+          corepack disable
+          npm install --legacy-peer-deps
       - name: Build web assets
-        script: yarn run app:build
+        script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
