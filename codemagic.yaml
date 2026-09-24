@@ -6,8 +6,8 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Install pnpm
-        script: npm install -g pnpm
+      - name: Enable pnpm via corepack
+        script: corepack enable && corepack prepare pnpm@latest --activate
       - name: Install dependencies
         script: pnpm install --frozen-lockfile=false
       - name: Build web assets
@@ -16,6 +16,3 @@ workflows:
         script: pnpm run mobile:sync
     artifacts:
       - ios/App/App/build/**/*.ipa
-
-
-
