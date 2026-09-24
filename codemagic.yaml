@@ -10,19 +10,20 @@ workflows:
       - name: Setup Yarn and Install Dependencies
         script: |
           corepack enable
-          # الانتقال للمجلد الذي يحوي package.json وتثبيت الحزم بـ yarn
-          cd $(find . -name "package.json" -maxdepth 2 -exec dirname {} ;)
-          yarn install
+          # التأكد من الانتقال للمجلد الصحيح إذا كان فرعياً أو البقاء في الجذر
+          if [ -d "clone" ]; then cd clone; fi
+          yarn install --no-immutable || yarn install
       - name: Build web assets
         script: |
-          cd $(find . -name "package.json" -maxdepth 2 -exec dirname {} ;)
+          if [ -d "clone" ]; then cd clone; fi
           yarn run app:build
       - name: Sync Capacitor iOS
         script: |
-          cd $(find . -name "package.json" -maxdepth 2 -exec dirname {} ;)
+          if [ -d "clone" ]; then cd clone; fi
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
