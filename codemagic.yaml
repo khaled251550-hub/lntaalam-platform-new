@@ -6,15 +6,14 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Enable yarn via corepack
-        script: corepack enable && corepack prepare yarn@stable --activate
       - name: Install dependencies
-        script: yarn install --frozen-lockfile=false
+        script: yarn install
       - name: Build web assets
         script: yarn run app:build
       - name: Sync Capacitor iOS
-        script: yarn run mobile:sync
+        script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
