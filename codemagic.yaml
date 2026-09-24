@@ -8,16 +8,22 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Install dependencies bypassing strict checks
+      - name: Debug and Install dependencies
         script: |
-          corepack disable
-          npm install --legacy-peer-deps
+          echo "=== Checking current directory ==="
+          pwd
+          ls -la
+          echo "=== Checking package.json content ==="
+          cat package.json
+          echo "=== Running npm install with verbose output ==="
+          npm install --legacy-peer-deps || exit 1
       - name: Build web assets
         script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
