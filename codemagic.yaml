@@ -4,24 +4,21 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: latest
-      vars:
-        YARN_IGNORE_WORKSPACE_ROOT_CHECK: "true"
       groups:
         - apple_credentials
     scripts:
       - name: Install Dependencies
         script: |
-          corepack enable
-          # استخدام خيار لتجاوز فحص المجلد الرئيسي تماماً
-          yarn install --inline-builds
+          npm install
       - name: Build web assets
         script: |
-          yarn run app:build
+          npm run app:build
       - name: Sync Capacitor iOS
         script: |
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
