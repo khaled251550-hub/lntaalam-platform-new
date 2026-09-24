@@ -2,8 +2,8 @@
   "name": "workspace",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-"build": "pnpm install --no-frozen-lockfile --unsafe-perm --config.enable-pre-post-scripts=true --config.allow-builds=* && pnpm run typecheck && pnpm -r --if-present run build",
+  "scripts": {"scripts": {
+  "build": "pnpm install --no-frozen-lockfile --unsafe-perm --config.allowBuilds.esbuild=true && pnpm run typecheck && pnpm -r --if-present run 
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
     "app:build": "pnpm --filter @workspace/learn-platform run build",
