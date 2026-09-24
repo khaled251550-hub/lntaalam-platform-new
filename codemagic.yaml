@@ -4,15 +4,14 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: latest
-      YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
+      vars:
+        YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
       groups:
         - apple_credentials
     scripts:
       - name: Install Dependencies
         script: |
-          # إعداد بيئة Yarn وتجاوز فحص الـ workspaces المتداخلة
           corepack enable
-          yarn config set enableGlobalCache false
           yarn install
       - name: Build web assets
         script: |
@@ -22,6 +21,7 @@ workflows:
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
