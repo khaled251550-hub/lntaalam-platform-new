@@ -1,9 +1,10 @@
 {
   "name": "workspace",
   "version": "0.0.0",
+  "packageManager": "pnpm@10.30.3",
   "license": "MIT",
-  "scripts": {"scripts": {
-  "build": "pnpm install --no-frozen-lockfile --unsafe-perm --config.allowBuilds.esbuild=true && pnpm run typecheck && pnpm -r --if-present run 
+  "scripts": {
+    "build": "npm exec --yes --package=pnpm@10.30.3 -- pnpm install --no-frozen-lockfile --unsafe-perm --config.allowBuilds.esbuild=true && npm exec --yes --package=pnpm@10.30.3 -- pnpm run typecheck && npm exec --yes --package=pnpm@10.30.3 -- pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
     "app:build": "pnpm --filter @workspace/learn-platform run build",
