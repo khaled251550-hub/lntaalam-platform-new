@@ -7,17 +7,23 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Install pnpm and dependencies
+      - name: Setup Yarn and Install Dependencies
         script: |
           corepack enable
-          corepack prepare pnpm@latest --activate
-          pnpm install --no-frozen-lockfile
+          # الانتقال إلى المجلد الذي يحتوي على package.json والتثبيت
+          cd $(find . -name "package.json" -maxdepth 2 -exec dirname {} ;)
+          yarn install
       - name: Build web assets
-        script: pnpm run app:build
+        script: |
+          cd $(find . -name "package.json" -maxdepth 2 -exec dirname {} ;)
+          yarn run app:build
       - name: Sync Capacitor iOS
-        script: npx cap sync ios
+        script: |
+          cd $(find . -name "package.json" -maxdepth 2 -exec dirname {} ;)
+          npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
