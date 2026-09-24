@@ -9,6 +9,8 @@ workflows:
     scripts:
       - name: Install Dependencies
         script: |
+          # إزالة أي تداخل محتمل في المجلد الرئيسي لمنع اعتراض Yarn
+          rm -f /Users/builder/package.json /Users/builder/yarn.lock
           cd /Users/builder/clone
           corepack enable
           yarn install
@@ -22,6 +24,7 @@ workflows:
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
