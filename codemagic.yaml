@@ -10,14 +10,17 @@ workflows:
     scripts:
       - name: Enable Corepack & Install with Yarn
         script: |
+          echo "Current directory is: $(pwd)"
+          ls -la
           corepack enable
-          yarn install
+          yarn install --frozen-lockfile || yarn install
       - name: Build web assets
         script: yarn run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
