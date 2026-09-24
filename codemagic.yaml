@@ -2,7 +2,6 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
-    working_directory: clone
     environment:
       node: latest
       groups:
@@ -13,11 +12,9 @@ workflows:
           corepack enable
           yarn install
       - name: Build web assets
-        script: |
-          yarn run app:build
+        script: yarn run app:build
       - name: Sync Capacitor iOS
-        script: |
-          npx cap sync ios
+        script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
 
