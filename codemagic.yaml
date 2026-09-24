@@ -8,29 +8,18 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Verify workspace and install
+      - name: Enable Corepack & Install with pnpm
         script: |
-          echo "Current directory is: $(pwd)"
-          ls -la
-          if [ -d "clone" ]; then
-            cd clone
-          fi
-          echo "Working inside: $(pwd)"
-          npm install --legacy-peer-deps --force
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          pnpm install
       - name: Build web assets
-        script: |
-          if [ -d "clone" ]; then
-            cd clone
-          fi
-          npm run app:build
+        script: pnpm run app:build
       - name: Sync Capacitor iOS
-        script: |
-          if [ -d "clone" ]; then
-            cd clone
-          fi
-          npx cap sync ios
+        script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
