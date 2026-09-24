@@ -9,20 +9,29 @@ workflows:
     scripts:
       - name: Install Dependencies
         script: |
-          # التأكد من الدخول إلى مجلد المشروع الصحيح أينما وجد
-          cd clone || cd .
+          echo "Current directory is:" && pwd
+          echo "Files in current directory:" && ls -la
+          # إذا كان المشروع داخل مجلد فرعي، سنبحث عنه وننتقل اليه تلقائياً
+          PROJECT_DIR=$(find . -name "package.json" -maxdepth 2 -exec dirname {} \;)
+          if [ -n "$PROJECT_DIR" ]; then
+            cd "$PROJECT_DIR"
+            echo "Moved to project directory: $PWD"
+          fi
           corepack enable
           yarn install
       - name: Build web assets
         script: |
-          cd clone || cd .
+          PROJECT_DIR=$(find . -name "package.json" -maxdepth 2 -exec dirname {} \;)
+          if [ -n "$PROJECT_DIR" ]; then cd "$PROJECT_DIR"; fi
           yarn run app:build
       - name: Sync Capacitor iOS
         script: |
-          cd clone || cd .
+          PROJECT_DIR=$(find . -name "package.json" -maxdepth 2 -exec dirname {} \;)
+          if [ -n "$PROJECT_DIR" ]; then cd "$PROJECT_DIR"; fi
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
