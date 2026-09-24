@@ -7,6 +7,10 @@ workflows:
       groups:
         - apple_credentials
     scripts:
+      - name: Enable Corepack & Yarn
+        script: |
+          corepack enable
+          corepack prepare yarn@latest --activate
       - name: Install dependencies
         script: yarn install
       - name: Build web assets
@@ -15,6 +19,7 @@ workflows:
         script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
 
