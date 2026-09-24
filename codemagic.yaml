@@ -8,21 +8,16 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Debug and Install dependencies
+      - name: Install dependencies
         script: |
-          echo "=== Checking current directory ==="
-          pwd
-          ls -la
-          echo "=== Checking package.json content ==="
-          cat package.json
-          echo "=== Running npm install with verbose output ==="
-          npm install --legacy-peer-deps || exit 1
+          npm install --force
       - name: Build web assets
         script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
