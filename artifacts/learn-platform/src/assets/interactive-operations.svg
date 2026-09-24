@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">الجمع والطرح</title>
+  <desc id="desc">مجموعات من الكرات تشرح الجمع والطرح بصرياً</desc>
+  <rect width="960" height="540" rx="42" fill="#fff4ef"/>
+  <rect x="72" y="112" width="330" height="280" rx="34" fill="#f6b233" opacity=".92"/>
+  <rect x="558" y="112" width="330" height="280" rx="34" fill="#36738a" opacity=".92"/>
+  <g fill="#fff8e8">
+    <circle cx="160" cy="200" r="28"/><circle cx="250" cy="200" r="28"/><circle cx="340" cy="200" r="28"/>
+    <circle cx="160" cy="300" r="28"/><circle cx="250" cy="300" r="28"/><circle cx="340" cy="300" r="28"/>
+    <circle cx="646" cy="200" r="28"/><circle cx="736" cy="200" r="28"/><circle cx="826" cy="200" r="28"/>
+    <circle cx="646" cy="300" r="28"/><circle cx="736" cy="300" r="28"/>
+  </g>
+  <text x="480" y="290" text-anchor="middle" font-size="110" font-family="Arial, sans-serif" font-weight="700" fill="#214c43">+</text>
+  <path d="M390 440h180" stroke="#214c43" stroke-width="14" stroke-linecap="round"/>
+  <path d="M458 408l34 34-34 34M502 408l-34 34 34 34" fill="none" stroke="#214c43" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

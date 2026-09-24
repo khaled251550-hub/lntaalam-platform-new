@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">الأرقام والعد</title>
+  <desc id="desc">أشكال ملونة تساعد على عد الأشياء وربطها بالأرقام</desc>
+  <rect width="960" height="540" rx="42" fill="#eef8f5"/>
+  <path d="M0 420c160-90 280-30 430-80s290-100 530 20v180H0z" fill="#d6eee5"/>
+  <g fill="#f6b233">
+    <circle cx="160" cy="330" r="42"/><circle cx="280" cy="330" r="42"/><circle cx="400" cy="330" r="42"/>
+    <circle cx="520" cy="330" r="42"/><circle cx="640" cy="330" r="42"/>
+  </g>
+  <g fill="#36738a">
+    <rect x="104" y="112" width="126" height="150" rx="24"/><rect x="300" y="112" width="126" height="150" rx="24"/>
+    <rect x="496" y="112" width="126" height="150" rx="24"/><rect x="692" y="112" width="126" height="150" rx="24"/>
+  </g>
+  <g fill="#fff8e8" font-family="Arial, sans-serif" font-size="88" font-weight="700" text-anchor="middle">
+    <text x="167" y="215">١</text><text x="363" y="215">٢</text><text x="559" y="215">٣</text><text x="755" y="215">٤</text>
+  </g>
+  <path d="M108 454h744" stroke="#214c43" stroke-width="12" stroke-linecap="round" opacity=".65"/>
+</svg>
