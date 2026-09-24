@@ -7,23 +7,26 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Clean Install without strict corepack checks
+      - name: Fresh Setup with Correct Package Manager
         script: |
           cd /Users/builder/clone
-          # إيقاف أي تفعيل إجباري لـ corepack لكي لا يعترض على إصدارات المدير
-          corepack disable || true
-          # استخدام npm مع تجاهل النصوص البرمجية الإجبارية الفاحصة (ignore-scripts)
-          npm install --legacy-peer-deps --ignore-scripts
+          # تفعيل pnpm بالطريقة الرسمية التي يتوافق بها مع حقل packageManager في المشروع
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          
+          # تثبيت الاعتماديات مع تجاوز القيود عبر القوة الصريحة
+          pnpm install --no-frozen-lockfile
       - name: Build web assets
         script: |
           cd /Users/builder/clone
-          npm run app:build
+          pnpm run app:build
       - name: Sync Capacitor iOS
         script: |
           cd /Users/builder/clone
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
