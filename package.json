@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {"scripts": {
-  "build": "pnpm install --no-frozen-lockfile --unsafe-perm --config.allowBuilds.esbuild=true && pnpm run typecheck && pnpm -r --if-present run 
+  "build": "pnpm install --no-frozen-lockfile --unsafe-perm --config.allowBuilds.esbuild=true && pnpm run typecheck && pnpm -r --if-present run build"
+ 
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
     "app:build": "pnpm --filter @workspace/learn-platform run build",
