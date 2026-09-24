@@ -2,27 +2,25 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     instance_type: mac_mini_m1
+    working_directory: clone
     environment:
       node: latest
       groups:
         - apple_credentials
     scripts:
-      - name: Setup Yarn and Install Dependencies
+      - name: Install Dependencies
         script: |
           corepack enable
-          # التأكد من الانتقال للمجلد الصحيح إذا كان فرعياً أو البقاء في الجذر
-          if [ -d "clone" ]; then cd clone; fi
-          yarn install --no-immutable || yarn install
+          yarn install
       - name: Build web assets
         script: |
-          if [ -d "clone" ]; then cd clone; fi
           yarn run app:build
       - name: Sync Capacitor iOS
         script: |
-          if [ -d "clone" ]; then cd clone; fi
           npx cap sync ios
     artifacts:
       - "**/ios/App/App/build/**/*.ipa"
+
 
 
 
