@@ -7,16 +7,18 @@ workflows:
       groups:
         - apple_credentials
     scripts:
-      - name: Force install with npm
+      - name: Clean and install dependencies
         script: |
-          rm -rf node_modules yarn.lock package-lock.json pnpm-lock.yaml .yarn
-          npm install --legacy-peer-deps --force
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
+          npm install --legacy-peer-deps --no-audit --no-fund
       - name: Build web assets
         script: npm run app:build
       - name: Sync Capacitor iOS
         script: npx cap sync ios
     artifacts:
       - ios/App/App/build/**/*.ipa
+
 
 
 
