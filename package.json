@@ -1,3 +1,8 @@
-{}
+{
+  "name": "lntaalam-platform",
+  "private": true,
+  "packageManager": "pnpm@10.30.3"
+}
+
 
 
