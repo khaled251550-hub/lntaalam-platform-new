@@ -1,10 +1,10 @@
 {
-  "name": "intalarn-platform",
-  "version": "1.0.0",
+  "name": "intaalam-platform-new",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
-    "build": "npm run build"
-  },
-  "dependencies": {}
+    "build": "cd artifacts/learn-platform && npm run build"
+  }
 }
+
 
