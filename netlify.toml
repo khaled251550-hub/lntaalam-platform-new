@@ -1,3 +1,8 @@
 [build]
-command = "npm run build"
-publish = "artifacts/learn-platform/dist/public"
+  base = "artifacts/learn-platform"
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
