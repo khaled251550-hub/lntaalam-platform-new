@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "artifacts/learn-platform/dist/public"
+
+[build.environment]
+  NODE_VERSION = "18.17.0"
+  PNPM_FLAGS = "--no-frozen-lockfile"
