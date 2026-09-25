@@ -2,11 +2,11 @@
   "name": "intaalam-platform-new",
   "private": true,
   "version": "1.0.0",
-  "packageManager": "pnpm@9.0.0",
   "scripts": {
-    "build": "pnpm --filter learn-platform build"
+    "build": "cd artifacts/learn-platform && npm install && npm run build"
   }
 }
+
 
 
 
