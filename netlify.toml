@@ -1,0 +1,3 @@
+[build]
+command = "npm run build"
+publish = "artifacts/learn-platform/dist/public"
